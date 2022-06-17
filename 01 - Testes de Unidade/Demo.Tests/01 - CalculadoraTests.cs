@@ -26,10 +26,10 @@ namespace Demo.Tests
         [Theory]
         [InlineData(2, 2, 4)]
         [InlineData(5, 2, 7)]
-        [InlineData(3, 2, 4)]
+        [InlineData(3, 2, 5)]
         [InlineData(1, 1, 2)]
         [InlineData(5, 5, 10)]
-        [InlineData(15, 2, 6)]
+        [InlineData(15, 2, 17)]
         [InlineData(10, 10, 20)]
         public void Calculadora_Somar_RetornarValoresSomaCorretos(double valor_1, double valor_2, double total)
         {
