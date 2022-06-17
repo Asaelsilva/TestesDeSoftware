@@ -17,7 +17,7 @@ namespace Features.Clientes
         {
         }
 
-        public Cliente(Guid id, string nome, string sobrenome, DateTime dataNascimento, string email, bool ativo,
+        public Cliente (Guid id, string nome, string sobrenome, DateTime dataNascimento, string email, bool ativo,
             DateTime dataCadastro)
         {
             Id = id;
