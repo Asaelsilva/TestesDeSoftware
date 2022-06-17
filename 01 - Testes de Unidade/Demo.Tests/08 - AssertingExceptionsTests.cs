@@ -21,7 +21,7 @@ namespace Demo.Tests
         {
             // Arrange & Act & Assert
             var exception =
-                Assert.Throws<Exception>(testCode: () => FuncionarioFactory.Criar(nome: "Eduardo", salario: 250));
+                Assert.Throws<Exception>(testCode: () => FuncionarioFactory.Criar(nome: "Asael", salario: 250));
 
             Assert.Equal("Salario inferior ao permitido", exception.Message);
         }

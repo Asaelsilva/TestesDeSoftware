@@ -11,10 +11,10 @@ namespace Demo.Tests
             var sut = new StringsTools();
 
             // Act
-            var nomeCompleto = sut.Unir(nome: "Eduardo", sobrenome: "Pires");
+            var nomeCompleto = sut.Unir(nome: "Asael", sobrenome: "Silva");
 
             // Assert
-            Assert.Equal(expected: "Eduardo Pires", actual: nomeCompleto);
+            Assert.Equal(expected: "Asael Silva", actual: nomeCompleto);
         }
 
 
@@ -26,10 +26,10 @@ namespace Demo.Tests
             var sut = new StringsTools();
 
             // Act
-            var nomeCompleto = sut.Unir("Eduardo", "Pires");
+            var nomeCompleto = sut.Unir("Asael", "Silva");
 
             // Assert
-            Assert.Equal(expected:"EDUARDO PIRES", actual: nomeCompleto, ignoreCase: true);
+            Assert.Equal(expected:"ASAEL SILVA", actual: nomeCompleto, ignoreCase: true);
         }
 
 
@@ -41,10 +41,10 @@ namespace Demo.Tests
             var sut = new StringsTools();
 
             // Act
-            var nomeCompleto = sut.Unir("Eduardo", "Pires");
+            var nomeCompleto = sut.Unir("Asael", "Silva");
 
             // Assert
-            Assert.Contains(expectedSubstring:"ardo", actualString: nomeCompleto);
+            Assert.Contains(expectedSubstring:"sael", actualString: nomeCompleto);
         }
 
 
@@ -55,10 +55,10 @@ namespace Demo.Tests
             var sut = new StringsTools();
 
             // Act
-            var nomeCompleto = sut.Unir("Eduardo", "Pires");
+            var nomeCompleto = sut.Unir("Asael", "Silva");
 
             // Assert
-            Assert.StartsWith(expectedStartString:"Edu", actualString: nomeCompleto);
+            Assert.StartsWith(expectedStartString:"Asa", actualString: nomeCompleto);
         }
 
 
@@ -69,10 +69,10 @@ namespace Demo.Tests
             var sut = new StringsTools();
 
             // Act
-            var nomeCompleto = sut.Unir("Eduardo", "Pires");
+            var nomeCompleto = sut.Unir("Asael", "Silva");
 
             // Assert
-            Assert.EndsWith(expectedEndString: "res", actualString: nomeCompleto);
+            Assert.EndsWith(expectedEndString: "va", actualString: nomeCompleto);
         }
 
 
@@ -83,7 +83,7 @@ namespace Demo.Tests
             var sut = new StringsTools();
 
             // Act
-            var nomeCompleto = sut.Unir("Eduardo", "Pires");
+            var nomeCompleto = sut.Unir("Asael", "Silva");
 
             // Assert
             Assert.Matches(expectedRegexPattern:"[A-Z]{1}[a-z]+ [A-Z]{1}[a-z]+", actualString: nomeCompleto);
