@@ -32,6 +32,28 @@ namespace Features.Tests._01___Traits
             Assert.Equal(0, cliente.ValidationResult.Errors.Count);
         }
 
+        [Fact(DisplayName = "Novo Cliente Válido")]
+        [Trait("Categoria", "Cliente Trait Testes")]
+        public void Cliente_NovoCliente_ValidaSeTemNomeESobrenome()
+        {
+            // Arrange
+            var cliente = new Cliente(
+                Guid.NewGuid(),
+                null,
+                null,
+                DateTime.Now.AddYears(-30),
+                "edu@edu.com",
+                true,
+                DateTime.Now);
+
+            // Act
+            var result = cliente.NomeCompleto();
+
+            // Assert 
+            Assert.True(result.Contains(" "));
+            Assert.Equal(0, cliente.ValidationResult.Errors.Count);
+        }
+
         [Fact(DisplayName = "Novo Cliente Inválido")]
         [Trait("Categoria", "Cliente Trait Testes")]
         public void Cliente_NovoCliente_DeveEstarInvalido()

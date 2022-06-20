@@ -13,9 +13,9 @@ namespace Features.Clientes
         public string Email { get; private set; }
         public bool Ativo { get; private set; }
 
-        protected Cliente()
-        {
-        }
+        //protected Cliente()
+        //{
+        //}
 
         public Cliente (Guid id, string nome, string sobrenome, DateTime dataNascimento, string email, bool ativo,
             DateTime dataCadastro)
@@ -34,10 +34,10 @@ namespace Features.Clientes
             return $"{Nome} {Sobrenome}";
         }
 
-        public bool EhEspecial()
-        {
-            return DataCadastro < DateTime.Now.AddYears(-3) && Ativo;
-        }
+        //public bool EhEspecial()
+        //{
+        //    return DataCadastro < DateTime.Now.AddYears(-3) && Ativo;
+        //}
 
         public void Inativar()
         {
