@@ -13,24 +13,24 @@ namespace Features.Tests.Dados_Humanos
     {
         public Cliente GerarClienteValido()
         {
-            return GerarClientes(1, true).FirstOrDefault();
+            return GerarClientes(true).FirstOrDefault();
         }
 
         public IEnumerable<Cliente> ObterClientesVariados()
         {
             var clientes = new List<Cliente>();
 
-            clientes.AddRange(GerarClientes(50, true).ToList());
-            clientes.AddRange(GerarClientes(50, false).ToList());
+            clientes.AddRange(GerarClientes(true, 50).ToList());
+            clientes.AddRange(GerarClientes(false, 50).ToList());
 
             return clientes;
         }
 
-        public IEnumerable<Cliente> GerarClientes(int quantidade, bool ativo)
+        public IEnumerable<Cliente> GerarClientes(bool ativo, int quantidade = 1)
         {
             var genero = new Faker().PickRandom<Name.Gender>();
 
-            //var email = new Faker().Internet.Email("eduardo","pires","gmail");
+            //var email = new Faker().Internet.Email("asael","silva","gmail");
             //var clientefaker = new Faker<Cliente>();
             //clientefaker.RuleFor(c => c.Nome, (f, c) => f.Name.FirstName());
 
