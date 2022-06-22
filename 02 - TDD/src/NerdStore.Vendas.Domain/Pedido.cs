@@ -25,13 +25,14 @@ namespace NerdStore.Vendas.Domain
         private readonly List<PedidoItem> _pedidoItems;
         public IReadOnlyCollection<PedidoItem> PedidoItems => _pedidoItems;
 
+
         public void AdicionarItem(PedidoItem pedidoItem)
         {
-            if (pedidoItem.Quantidade > MAX_UNIDADES_ITEM) throw new DomainException($"Maximo de {MAX_UNIDADES_ITEM} unidades por produro!");            
+            ValidarQuantidadeItemPermitida(pedidoItem);
 
-            if (_pedidoItems.Any(x => x.PedidoItemId == pedidoItem.PedidoItemId))
+            if (PedidoItemExistente(pedidoItem))
             {
-                var itemExistente = _pedidoItems.FirstOrDefault(x => x.PedidoItemId == pedidoItem.PedidoItemId);
+                var itemExistente = _pedidoItems.FirstOrDefault(x => x.PedidoItemId == pedidoItem.PedidoItemId);                             
 
                 itemExistente.AdicionarUnidades(pedidoItem.Quantidade);
                 pedidoItem = itemExistente;
@@ -39,6 +40,23 @@ namespace NerdStore.Vendas.Domain
             }
             _pedidoItems.Add(pedidoItem);
             CalcularValorPedido();
+        }
+
+        private void ValidarQuantidadeItemPermitida(PedidoItem pedidoItem)
+        {
+            var quantidadeItens = pedidoItem.Quantidade;
+            if (PedidoItemExistente(pedidoItem))
+            {
+                var itemExistente = _pedidoItems.FirstOrDefault(x => x.PedidoItemId == pedidoItem.PedidoItemId);
+                quantidadeItens += itemExistente.Quantidade;
+            }
+
+            if (quantidadeItens > MAX_UNIDADES_ITEM) throw new DomainException($"Maximo de {MAX_UNIDADES_ITEM} unidades por produro!");
+        }
+
+        private bool PedidoItemExistente(PedidoItem pedidoItem)
+        {
+            return _pedidoItems.Any(x => x.PedidoItemId == pedidoItem.PedidoItemId);
         }
 
         public void CalcularValorPedido()
@@ -63,6 +81,6 @@ namespace NerdStore.Vendas.Domain
                 pedido.TornarRascunho();
                 return pedido;
             }
-        }        
+        }
     }
 }
