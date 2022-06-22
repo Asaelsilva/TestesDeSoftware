@@ -1,4 +1,5 @@
-﻿using NerdStore.Vendas.Domain.Enum;
+﻿using NerdStore.Core.DomainObjects;
+using NerdStore.Vendas.Domain.Enum;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
@@ -14,7 +15,9 @@ namespace NerdStore.Vendas.Domain
         {
             _pedidoItems = new List<PedidoItem>();
         }
-        
+        public static int MAX_UNIDADES_ITEM => 15;
+        public static int MIN_UNIDADES_ITEM => 1;
+
         public Guid ClienteId { get; private set; }
         public decimal ValorTotal { get; private set; }
         public PedidoStatus PedidoStatus { get; private set; }
@@ -24,6 +27,8 @@ namespace NerdStore.Vendas.Domain
 
         public void AdicionarItem(PedidoItem pedidoItem)
         {
+            if (pedidoItem.Quantidade > MAX_UNIDADES_ITEM) throw new DomainException($"Maximo de {MAX_UNIDADES_ITEM} unidades por produro!");            
+
             if (_pedidoItems.Any(x => x.PedidoItemId == pedidoItem.PedidoItemId))
             {
                 var itemExistente = _pedidoItems.FirstOrDefault(x => x.PedidoItemId == pedidoItem.PedidoItemId);
@@ -58,6 +63,6 @@ namespace NerdStore.Vendas.Domain
                 pedido.TornarRascunho();
                 return pedido;
             }
-        }
+        }        
     }
 }
