@@ -10,7 +10,7 @@ using System.Threading.Tasks;
 
 namespace NerdStore.Vendas.Domain
 {
-    public class Pedido
+    public class Pedido: Entity, IAggregateRoot
     {
         protected Pedido()
         {
@@ -125,7 +125,7 @@ namespace NerdStore.Vendas.Domain
             if (quantidadeItens > MAX_UNIDADES_ITEM) throw new DomainException($"Maximo de {MAX_UNIDADES_ITEM} unidades por produro!");
         }
 
-        private bool PedidoItemExistente(PedidoItem pedidoItem)
+        public bool PedidoItemExistente(PedidoItem pedidoItem)
         {
             return _pedidoItems.Any(x => x.PedidoItemId == pedidoItem.PedidoItemId);
         }
